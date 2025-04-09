@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Edgardo Velásquez | Desarrollador Fullstack</title>
+    <style>
+        :root {
+  --primary-color: #1E3A8A;    /* Azul oscuro para confianza y profesionalismo */
+  --secondary-color: #1F2A44;  /* Gris oscuro elegante */
+  --accent-color: #3B82F6;     /* Azul medio vibrante */
+  --light-accent: #BFDBFE;     /* Azul claro suave */
+  --light-color: #F1F5F9;      /* Gris azulado claro para fondos */
+  --dark-color: #1F2A44;       /* Gris oscuro para texto principal */
+  --success-color: #22C55E;    /* Verde éxito */
+  --subtle-color: #E5E7EB;     /* Gris suave (sin cambios, funciona bien) */
+  --font-main: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: #6B7280;
+            background-color: var(--light-color);
+            font-weight: 400;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/600') center/cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            letter-spacing: 0.8px;
+            transition: color 0.3s ease;
+        }
+        
+        .logo:hover {
+            color: var(--light-accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+        
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 6px 0;
+            transition: all 0.3s ease;
+            letter-spacing: 0.4px;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.4s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+        }
+        
+        .hero {
+            padding: 90px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 750px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), var(--light-accent));
+            color: white;
+            padding: 16px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease; /* Cambiado de 0.4s a 0.2s */
+            border: none;
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-btn:hover {
+            background: linear-gradient(135deg, #2563EB, #60A5FA);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        section {
+            padding: 120px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            display: inline-block;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--success-color));
+            margin: 20px auto 0;
+            border-radius: 4px;
+        }
+        
+        #about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 70px;
+        }
+        
+        .about-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease;
+}
+
+.about-image img:hover {
+  transform: scale(1.03);
+}
+        
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .about-text p {
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        #skills {
+            background-color: var(--subtle-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #skills::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/800') center/cover;
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skills-container .skill-list a {
+          color: inherit; /* Hereda el color del texto circundante (gris por defecto en tu diseño) */
+          text-decoration: none; /* Elimina el subrayado predeterminado */
+          transition: color 0.3s ease; /* Suaviza el cambio de color al pasar el mouse */
+        }
+
+        /* Estilo al pasar el mouse (hover) */
+        .skills-container .skill-list a:hover {
+          color: var(--accent-color); /* Cambia al color de acento (#3B82F6) al pasar el mouse */
+        }
+
+        /* Animación para la sección de habilidades */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Clase para activar la animación cuando el elemento es visible */
+.skill-category.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Retrasos para cada categoría (para que no aparezcan todas al mismo tiempo) */
+.skill-category:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.skill-category:nth-child(2) { transition-delay: 0.1s; } /* Reducido de 0.2s */
+.skill-category:nth-child(3) { transition-delay: 0.2s; } /* Reducido de 0.4s */
+        
+        .skill-category {
+            flex: 1;
+            min-width: 280px;
+            background-color: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(229, 231, 235, 0.5);
+             opacity: 0; /* Inicialmente invisible */
+  transform: translateY(30px); /* Inicialmente desplazado hacia abajo */
+  transition: all 0.2s ease; /* Cambiado de 0.4s a 0.2s */        } 
+        
+        .skill-category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--accent-color);
+        }
+        
+        .skill-category h3 {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--subtle-color);
+            font-weight: 600;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            padding: 6px 0;
+            font-weight: 400;
+        }
+        
+        .skill-list li:before {
+            content: "▹";
+            color: var(--accent-color);
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        
+        #experience {
+            background-color: white;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            background: linear-gradient(to bottom, var(--accent-color), var(--success-color));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2.5px;
+            border-radius: 5px;
+            z-index: 0; /* Línea detrás de los elementos */
+        }
+
+        
+        
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Cambiado de 0.6s a 0.3s */            position: relative; /* Necesario para el z-index */
+            z-index: 1; /* Por encima de la línea */
+            margin-bottom: 40px; /* Espacio entre elementos */
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(1) { transition-delay: 0s; }
+        .timeline-item:nth-child(2) { transition-delay: 0.05s; } /* Reducido de 0.1s */
+.timeline-item:nth-child(3) { transition-delay: 0.1s; } /* Reducido de 0.2s */
+.timeline-item:nth-child(4) { transition-delay: 0.15s; } /* Reducido de 0.3s */
+.timeline-item:nth-child(5) { transition-delay: 0.2s; } /* Reducido de 0.4s */
+.timeline-item:nth-child(6) { transition-delay: 0.25s; } /* Reducido de 0.5s */
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid var(--accent-color);
+            top: 18px;
+            border-radius: 50%;
+            z-index: 2; /* Círculo por encima de la línea */
+            box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.2);
+            transition: transform 0.2s ease; /* Cambiado de 0.3s a 0.2s */        
+        }
+        
+        .timeline-item:hover::after {
+            transform: scale(1.1);
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 30px 35px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border-left: 4px solid var(--accent-color);
+            position: relative; /* Necesario para el z-index */
+            z-index: 1; /* Contenido por encima de la línea */
+        }
+
+        .timeline-content h3 a {
+  color: inherit; /* Hereda el color del h3 (var(--primary-color)) */
+  text-decoration: none; /* Elimina el subrayado */
+  transition: color 0.3s ease; /* Suaviza el cambio de color al pasar el mouse */
+}
+
+.timeline-content h3 a:hover {
+  color: var(--accent-color); /* Cambia al color de acento (#3B82F6) al pasar el mouse */
+}
+        
+        .timeline-content:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+        
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 18px;
+            display: block;
+            font-size: 1rem;
+        }
+        
+        .timeline-content p {
+            margin-bottom: 12px;
+            font-weight: 300;
+        }
+        
+        .timeline-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        #contact {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #contact::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/800') center/cover;
+            opacity: 0.04;
+            z-index: 0;
+        }
+        
+        #contact .section-title h2 {
+            color: white;
+        }
+        
+        #contact .section-title h2::after {
+            background: linear-gradient(90deg, var(--light-accent), var(--success-color));
+        }
+        
+        .contact-form {
+            max-width: 650px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 50px;
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 16px 18px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+            border-radius: 8px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+        }
+        
+        textarea.form-control {
+            min-height: 160px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-color), var(--success-color));
+            color: white;
+            border: none;
+            padding: 16px 35px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.2s ease; /* Cambiado de 0.4s a 0.2s */
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+            letter-spacing: 0.5px;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #2563EB, #059669);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-top: 70px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease; /* Cambiado de 0.4s a 0.2s */
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-item span {
+            font-size: 1.5rem;
+            color: var(--light-accent);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 50px 0 40px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.2rem;
+            transition: all 0.2s ease; /* Cambiado de 0.3s a 0.2s */
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .copyright {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-top: 25px;
+            font-weight: 300;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        
+            .hero p {
+                font-size: 1.2rem;
+            }
+        
+            .timeline::after {
+                left: 31px;
+            }
+        
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                left: 0 !important; /* Ajusta para que todos estén alineados a la izquierda */
+                margin-bottom: 30px; /* Espacio en pantallas pequeñas */
+            }
+        
+            .timeline-item::after {
+                left: 21px;
+            }
+        
+            section {
+                padding: 80px 0;
+            }
+        }
+
+        .tech-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+background: linear-gradient(135deg, #3B82F6, #22C55E);/* Dorado como medalla */
+  color: white;
+  border-radius: 50%;
+  margin-right: 12px;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease; /* Cambiado de 0.3s a 0.2s */
+}
+
+.skill-list li {
+  display: flex;
+  align-items: center;
+}
+
+.skill-list li:hover .tech-icon {
+  transform: scale(1.1);
+}
+
+/* Ajustar el marcador "▹" para que no interfiera */
+.skill-list li:before {
+  display: none; /* Quitamos el marcador original */
+}
+        </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <nav>
+            <a href="#" class="logo">E. Velásquez</a>
+            <div class="nav-links">
+                <a href="#about">Sobre Mí</a>
+                <a href="#skills">Habilidades</a>
+                <a href="#experience">Experiencia</a>
+                <a href="#contact">Contacto</a>
+            </div>
+        </nav>
+        
+        <div class="hero container">
+            <h1>Edgardo Velásquez Gutiérrez</h1>
+            <p>Desarrollador Full Stack con más de 6 años de experiencia creando soluciones tecnológicas robustas y escalables para empresas</p>
+            <a href="#contact" class="cta-btn">Solicitar mis servicios</a>
+        </div>
+    </header>
+    
+    <!-- About Section -->
+    <!-- About Section -->
+<section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>Sobre Mí</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-image">
+          <img src="images/edgardo-velasquez.jpg" alt="Foto de Edgardo Velásquez, Desarrollador Full Stack" />
+        </div>
+        <div class="about-text">
+          <h3>Experto en Desarrollo de Soluciones Tecnológicas Empresariales</h3>
+          <p>Con más de 6 años de experiencia en el ciclo completo de desarrollo de software, me especializo en crear aplicaciones web robustas y escalables utilizando tecnologías modernas tanto en frontend como en backend.</p>
+          <p>Mi formación en Ingeniería en Informática y mi experiencia trabajando en diversos sectores me han permitido desarrollar soluciones completas que resuelven problemas reales de negocio. Me destaco por mi capacidad para transformar requisitos complejos en arquitecturas eficientes y por entregar código limpio y bien estructurado.</p>
+          <p>Actualmente estoy enfocado en proveer servicios de desarrollo empresarial con arquitecturas basadas en microservicios, optimización de rendimiento y experiencias de usuario excepcionales que ayudan a mis clientes a alcanzar sus objetivos de negocio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- Skills Section -->
+   <!-- Skills Section -->
+<!-- Skills Section -->
+<section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <h2>Expertise Técnico</h2>
+      </div>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Backend</h3>
+          <ul class="skill-list">
+            <li><a href="https://www.java.com" target="_blank"><span class="tech-icon"><i class="fab fa-java"></i></span> Java</a></li>
+            <li><a href="https://spring.io" target="_blank"><span class="tech-icon"><i class="fas fa-leaf"></i></span> Spring Framework</a></li>
+            <li><a href="https://spring.io/projects/spring-boot" target="_blank"><span class="tech-icon"><i class="fas fa-seedling"></i></span> Spring Boot</a></li>
+            <li><a href="https://hibernate.org" target="_blank"><span class="tech-icon"><i class="fas fa-database"></i></span> Hibernate</a></li>
+            <li><a href="https://www.redhat.com/en/technologies/jboss-middleware" target="_blank"><span class="tech-icon"><i class="fas fa-server"></i></span> JBoss</a></li>
+            <li><a href="https://maven.apache.org" target="_blank"><span class="tech-icon"><i class="fas fa-tools"></i></span> Maven</a></li>
+            <li><a href="https://jakarta.ee/specifications/persistence" target="_blank"><span class="tech-icon"><i class="fas fa-layer-group"></i></span> JPA</a></li>
+            <li><a href="https://go.dev" target="_blank"><span class="tech-icon"><i class="fab fa-golang"></i></span> Go</a></li>
+            <li><a href="https://rubyonrails.org" target="_blank"><span class="tech-icon"><i class="far fa-gem"></i></span> Ruby on Rails</a></li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Frontend</h3>
+          <ul class="skill-list">
+            <li><a href="https://angular.io" target="_blank"><span class="tech-icon"><i class="fab fa-angular"></i></span> Angular</a></li>
+            <li><a href="https://vuejs.org" target="_blank"><span class="tech-icon"><i class="fab fa-vuejs"></i></span> Vue.js</a></li>
+            <li><a href="https://reactjs.org" target="_blank"><span class="tech-icon"><i class="fab fa-react"></i></span> React</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank"><span class="tech-icon"><i class="fab fa-html5"></i></span> HTML5</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank"><span class="tech-icon"><i class="fab fa-css3-alt"></i></span> CSS3</a></li>
+            <li><a href="https://getbootstrap.com" target="_blank"><span class="tech-icon"><i class="fab fa-bootstrap"></i></span> Bootstrap</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"><span class="tech-icon"><i class="fab fa-js"></i></span> JavaScript</a></li>
+            <li><a href="https://primefaces.org" target="_blank"><span class="tech-icon"><i class="fas fa-code"></i></span> JSF-PrimeFaces</a></li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Bases de Datos & Servicios</h3>
+          <ul class="skill-list">
+            <li><a href="https://www.postgresql.org" target="_blank"><span class="tech-icon"><i class="fas fa-database"></i></span> PostgreSQL</a></li>
+            <li><a href="https://www.oracle.com/database" target="_blank"><span class="tech-icon"><i class="fas fa-server"></i></span> Oracle SQL</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/sql/t-sql" target="_blank"><span class="tech-icon"><i class="fas fa-table"></i></span> Transact-SQL</a></li>
+            <li><a href="https://restfulapi.net" target="_blank"><span class="tech-icon"><i class="fas fa-exchange-alt"></i></span> REST API</a></li>
+            <li><a href="https://www.w3.org/TR/soap" target="_blank"><span class="tech-icon"><i class="fas fa-soap"></i></span> SOAP</a></li>
+            <li><a href="https://www.w3.org/TR/wsdl" target="_blank"><span class="tech-icon"><i class="fas fa-file-code"></i></span> WSDL</a></li>
+            <li><a href="https://www.w3.org/XML" target="_blank"><span class="tech-icon"><i class="fas fa-code"></i></span> XML</a></li>
+            <li><a href="https://microservices.io" target="_blank"><span class="tech-icon"><i class="fas fa-cubes"></i></span> Microservicios</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- Experience Section -->
+<section id="experience">
+  <div class="container">
+    <div class="section-title">
+      <h2>Experiencia Profesional</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">Marzo 2023 - Presente</span>
+          <h3><a href="https://repositorio.ucentral.cl" target="_blank">Infoxicados</a></h3>
+          <p>Despliegue y Desarrollo del Repositorio Digital para la Universidad Central.</p>
+          <p>Integración de DOI y Handle Server en el Repositorio Digital.</p>
+          <p><strong>Proyecto:</strong> Universidad Central de Chile Repository - Desarrollo de un repositorio digital escalable con tecnologías como Java, Spring y PostgreSQL, enfocado en la gestión eficiente de contenido académico.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">Agosto 2021 - Marzo 2023</span>
+          <h3><a href="https://www.aureolab.com" target="_blank">Aureolab</a></h3>
+          <p>Liderazgo y Desarrollo de proyectos utilizando tecnologías como Go y Ruby on Rails.</p>
+          <p>Integración de Hubster, Webpay y Mailchimp para la plataforma Toliv.</p>
+          <p>Integración de OpenAI para la bolsa de trabajo Winit.</p>
+          <p><strong>Proyecto:</strong> Toliv - Desarrollo de una plataforma integral con Go y Ruby on Rails, integrando múltiples servicios externos para optimizar la experiencia del usuario y la funcionalidad del negocio.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">Octubre 2017 - Marzo 2018</span>
+          <h3><a href="https://www.exe.cl" target="_blank">Exe</a></h3>
+          <p>Migración de Ungasoft a Exedoc en la Dirección del Trabajo.</p>
+          <p>Desarrollo de Código Único para Exedoc en Fonasa.</p>
+          <p>Mejoras de rendimiento en bandejas de entrada utilizando Hibernate ORM.</p>
+          <p><strong>Tecnologías:</strong> Java 6, PostgreSQL 9.2, Seam 2.2.0, Hibernate 5.0, Maven 3.5.0, JAX-RS 2.0</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">Enero 2017 - Agosto 2017</span>
+          <h3><a href="https://acidlabs.com/" target="_blank">Acid Labs Chile</a></h3>
+          <p>Desarrollo del módulo de beneficiarios para SCD utilizando Spring Boot.</p>
+          <p><strong>Proyecto:</strong> Microservices for SCD - Implementación de un sistema basado en microservicios para la gestión de beneficiarios, optimizando la escalabilidad y el rendimiento con Spring Boot y PostgreSQL.</p>
+          <p><strong>Tecnologías:</strong> Java 8, PostgreSQL 9.2, Spring Boot, Maven, IntelliJ Ultimate.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">Marzo 2015 - Diciembre 2016</span>
+          <h3><a href="https://www.aclti.com/es/" target="_blank">Aplicaciones Computacionales SPA</a></h3>
+          <p>Desarrollo de una plataforma bancaria para gestionar flujos de trabajo de créditos hipotecarios.</p>
+          <p><strong>Tecnologías:</strong> Java 1.7, Oracle SQL 11g, Spring Framework, JSF-PrimeFaces, WebLogic, Maven, Git.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">Julio 2014 - Enero 2015</span>
+          <h3><a href="https://www.sernapesca.cl/" target="_blank">Siseek</a></h3>
+          <p>Desarrollo de un sistema de trazabilidad para productos y especies (Sernapesca).</p>
+          <p><strong>Tecnologías:</strong> HTML, JavaScript, Transact-SQL, Java, XML, JPA, Struts, Spring.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Solicita una Consulta</h2>
+            </div>
+            
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nombre completo">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Correo electrónico">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tipo de proyecto">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Describa brevemente su proyecto o necesidad tecnológica"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Solicitar información</button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📍</span>
+                    <p>Antonio Varas 1421, Quilpué, Chile</p>
+                </div>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <p><a href="mailto://edg.velasquez.g@gmail.com" class="__cf_email__" data-cfemail="732716155c04171e1301030717085c1532151f131b1e5c111d1f"></a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/edgvelasquez/">LinkedIn</a>
+                <a href="https://github.com/evelaguti">GitHub</a>
+            </div>
+            <p class="copyright">© 2025 Edgardo Velásquez. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission handling (placeholder)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por su interés! Nos pondremos en contacto a la brevedad.');
+            this.reset();
+        });
+        // Función para verificar si un elemento está en el viewport
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8
+        );
+    }
+
+    // Función para manejar el scroll y agregar la clase 'visible'
+    function handleScroll() {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach(item => {
+            if (isElementInViewport(item)) {
+                item.classList.add('visible');
+            }
+        });
+    }
+
+    // Función para verificar si un elemento está en el viewport
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8
+  );
+}
+
+// Función para manejar el scroll y activar animaciones
+function handleScroll() {
+  // Animación para la línea de tiempo (ya existente)
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  timelineItems.forEach(item => {
+    if (isElementInViewport(item)) {
+      item.classList.add('visible');
+    }
+  });
+
+  // Animación para las categorías de habilidades
+  const skillCategories = document.querySelectorAll('.skill-category');
+  skillCategories.forEach(category => {
+    if (isElementInViewport(category)) {
+      category.classList.add('visible');
+    }
+  });
+}
+
+// Hacer que los timeline-items sean clicables y redirijan al enlace del h3
+document.querySelectorAll('.timeline-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        // Evitar que se active si se hace clic en el enlace del h3 directamente
+        if (e.target.tagName !== 'A') {
+            const link = this.querySelector('.timeline-content h3 a');
+            if (link && link.href) {
+                window.open(link.href, '_blank');
+            }
+        }
+    });
+    
+    // Agregar cursor pointer para indicar que es clicable
+    item.style.cursor = 'pointer';
+});
+    // Escuchar el evento de scroll y ejecutar al cargar la página
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('load', handleScroll);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92d7bfffbf7b53ec',t:'MTc0NDE3ODA2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
