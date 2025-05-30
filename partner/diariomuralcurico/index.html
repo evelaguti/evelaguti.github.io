@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Diario Mural Curicó</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="icon"
+            href="https://via.placeholder.com/32x32/3B82F6/ffffff?text=DC"
+        />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css"
+            rel="stylesheet"
+        />
+        <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+        <style>
+            body {
+                margin: 0;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+            }
+
+            .glass-effect {
+                backdrop-filter: blur(10px);
+                background: rgba(255, 255, 255, 0.95);
+            }
+
+            .gradient-text {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .modern-title {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                background: linear-gradient(
+                    135deg,
+                    #1e3a8a 0%,
+                    #3b82f6 50%,
+                    #06b6d4 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                font-weight: 800;
+                letter-spacing: -0.02em;
+                text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+            }
+
+            .logo-container {
+                transition: all 0.3s ease;
+            }
+
+            .logo-container:hover {
+                transform: scale(1.02);
+            }
+
+            .card-hover {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .card-hover:hover {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            }
+
+            .pulse-dot {
+                animation: pulse-dot 2s infinite;
+            }
+
+            @keyframes pulse-dot {
+                0%,
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                50% {
+                    opacity: 0.5;
+                    transform: scale(1.1);
+                }
+            }
+
+            .floating-element {
+                animation: float 6s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            .hero-gradient {
+                background: linear-gradient(
+                    135deg,
+                    #667eea 0%,
+                    #764ba2 50%,
+                    #f093fb 100%
+                );
+            }
+
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .icon-wrapper {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 1.2em;
+                height: 1.2em;
+                margin-right: 0.5rem;
+            }
+        </style>
+    </head>
+    <body class="bg-gradient-to-br from-slate-50 via-white to-blue-50">
+        <div id="root" class="min-h-screen">
+            <!-- Header -->
+            <header
+                class="glass-effect shadow-2xl border-b border-white/20 sticky top-0 z-50"
+            >
+                <div class="container mx-auto px-6">
+                    <!-- Top Bar -->
+                    <div
+                        class="flex items-center justify-between py-3 text-sm border-b border-gray-200/50"
+                    >
+                        <div class="flex items-center space-x-6 text-gray-600">
+                            <div class="flex items-center space-x-2">
+                                <i
+                                    data-lucide="calendar"
+                                    class="w-4 h-4 text-blue-500"
+                                ></i>
+                                <span class="font-medium" id="current-date"
+                                    >Cargando fecha...</span
+                                >
+                            </div>
+                            <div class="hidden sm:flex items-center space-x-2">
+                                <i
+                                    data-lucide="map-pin"
+                                    class="w-4 h-4 text-red-500"
+                                ></i>
+                                <span>Curicó, Región del Maule</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex items-center space-x-4">
+                            <div
+                                class="flex items-center space-x-2 bg-green-50 px-3 py-1 rounded-full"
+                            >
+                                <i
+                                    data-lucide="thermometer"
+                                    class="w-4 h-4 text-green-600"
+                                ></i>
+                                <span class="text-green-700 font-medium"
+                                    >22°C</span
+                                >
+                            </div>
+                            <div
+                                class="flex items-center space-x-2 bg-purple-50 px-3 py-1 rounded-full"
+                            >
+                                <i
+                                    data-lucide="grape"
+                                    class="w-4 h-4 text-purple-600"
+                                ></i>
+                                <span class="text-purple-700 font-medium"
+                                    >Vendimia</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Header -->
+                    <div class="flex items-center justify-between py-6">
+                        <!-- Logo (solo visible en móvil) -->
+                        <div class="md:hidden flex-shrink-0">
+                            <img
+                                src="logo-bare.png"
+                                alt="Diario Mural Curicó Logo"
+                                class="h-12 w-12 object-contain"
+                            />
+                        </div>
+
+                        <!-- Logo + texto (escritorio) y texto centrado (móvil) -->
+                        <div class="flex-1 md:flex-none">
+                            <div
+                                class="text-center md:text-left logo-container"
+                            >
+                                <a
+                                    href="/"
+                                    class="inline-block group w-full md:w-auto"
+                                >
+                                    <div
+                                        class="flex items-center justify-center md:justify-start space-x-4"
+                                    >
+                                        <!-- Logo para escritorio -->
+                                        <img
+                                            src="logo-bare.png"
+                                            alt="Diario Mural Curicó Logo"
+                                            class="hidden md:block h-16 md:h-20 object-contain"
+                                        />
+                                        <!-- Texto moderno -->
+                                        <div class="text-center md:text-left">
+                                            <h1
+                                                class="modern-title text-xl md:text-3xl lg:text-4xl leading-tight"
+                                            >
+                                                Diario Mural
+                                            </h1>
+                                            <p
+                                                class="text-base md:text-xl font-semibold text-gray-600 -mt-1"
+                                            >
+                                                Curicó
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Controles de la derecha -->
+                        <div class="flex items-center space-x-4 flex-shrink-0">
+                            <div class="relative hidden md:block">
+                                <input
+                                    type="text"
+                                    placeholder="Buscar noticias..."
+                                    class="pl-12 pr-6 py-3 w-80 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm shadow-lg transition-all"
+                                />
+                                <i
+                                    data-lucide="search"
+                                    class="absolute left-4 top-3.5 w-5 h-5 text-gray-400"
+                                ></i>
+                            </div>
+                            <button
+                                id="menu-toggle"
+                                class="md:hidden p-3 hover:bg-gray-100 rounded-xl transition-colors"
+                            >
+                                <i data-lucide="menu" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <nav
+                        id="nav-menu"
+                        class="border-t border-gray-200/50 pt-4 pb-2 hidden md:block"
+                    >
+                        <ul
+                            class="flex flex-col md:flex-row md:space-x-2 space-y-2 md:space-y-0"
+                        >
+                            <li>
+                                <a
+                                    href="/"
+                                    class="flex items-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-medium transition-all"
+                                >
+                                    <i
+                                        data-lucide="home"
+                                        class="w-4 h-4 mr-2"
+                                    ></i
+                                    >Inicio
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/noticias"
+                                    class="flex items-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-medium transition-all"
+                                >
+                                    <i
+                                        data-lucide="newspaper"
+                                        class="w-4 h-4 mr-2"
+                                    ></i
+                                    >Noticias
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/deportes"
+                                    class="flex items-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-medium transition-all"
+                                >
+                                    <i
+                                        data-lucide="trophy"
+                                        class="w-4 h-4 mr-2"
+                                    ></i
+                                    >Deportes
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/cultura"
+                                    class="flex items-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-medium transition-all"
+                                >
+                                    <i
+                                        data-lucide="palette"
+                                        class="w-4 h-4 mr-2"
+                                    ></i
+                                    >Cultura
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/opinion"
+                                    class="flex items-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-medium transition-all"
+                                >
+                                    <i
+                                        data-lucide="message-circle"
+                                        class="w-4 h-4 mr-2"
+                                    ></i
+                                    >Opinión
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/publicar"
+                                    class="flex items-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-medium transition-all"
+                                >
+                                    <i
+                                        data-lucide="plus-circle"
+                                        class="w-4 h-4 mr-2"
+                                    ></i
+                                    >Publicar
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/quienes-somos"
+                                    class="flex items-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-medium transition-all"
+                                >
+                                    <i
+                                        data-lucide="users"
+                                        class="w-4 h-4 mr-2"
+                                    ></i
+                                    >Quiénes Somos
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+            <main class="container mx-auto px-6 py-12">
+                <!-- Hero Section -->
+                <section class="mb-16">
+                    <div
+                        id="slideshow"
+                        class="relative h-[400px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl card-hover"
+                    >
+                        <!-- Slides will be inserted by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Content Grid -->
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- Main Content -->
+                    <div class="lg:col-span-2 space-y-12">
+                        <!-- Featured Articles -->
+                        <section>
+                            <div class="flex items-center mb-8">
+                                <div
+                                    class="w-2 h-12 bg-gradient-to-b from-blue-500 to-purple-600 rounded-full mr-4"
+                                ></div>
+                                <h2 class="text-3xl font-bold gradient-text">
+                                    Destacadas
+                                </h2>
+                            </div>
+                            <div
+                                class="grid md:grid-cols-2 gap-8"
+                                id="featured-articles"
+                            >
+                                <!-- Articles will be inserted by JavaScript -->
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="space-y-8">
+                        <!-- Latest News -->
+                        <section
+                            class="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20 floating-element"
+                        >
+                            <div class="flex items-center mb-6">
+                                <div
+                                    class="w-4 h-4 bg-red-500 rounded-full mr-3 pulse-dot"
+                                ></div>
+                                <h3 class="text-xl font-bold text-gray-900">
+                                    Últimas Noticias
+                                </h3>
+                            </div>
+                            <div class="space-y-4" id="latest-news">
+                                <!-- News items will be inserted by JavaScript -->
+                            </div>
+                            <button
+                                class="w-full mt-6 py-3 text-blue-700 font-semibold hover:bg-blue-50 rounded-xl transition-all flex items-center justify-center space-x-2"
+                            >
+                                <span>Ver todas las noticias</span>
+                                <i
+                                    data-lucide="arrow-right"
+                                    class="w-4 h-4"
+                                ></i>
+                            </button>
+                        </section>
+
+                        <!-- Curicó Spotlight -->
+                        <section
+                            class="hero-gradient rounded-2xl p-8 text-white shadow-2xl floating-element"
+                            style="animation-delay: -3s"
+                        >
+                            <div class="flex items-center mb-6">
+                                <i data-lucide="grape" class="w-6 h-6 mr-3"></i>
+                                <h3 class="text-xl font-bold">
+                                    Curicó en Foco
+                                </h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div
+                                    class="flex items-center space-x-4 p-4 bg-white/20 backdrop-blur-sm rounded-xl"
+                                >
+                                    <div
+                                        class="w-3 h-3 bg-green-400 rounded-full"
+                                    ></div>
+                                    <div class="flex items-center space-x-2">
+                                        <i
+                                            data-lucide="sun"
+                                            class="w-4 h-4"
+                                        ></i>
+                                        <span class="font-medium"
+                                            >Clima: 22°C, Soleado</span
+                                        >
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center space-x-4 p-4 bg-white/20 backdrop-blur-sm rounded-xl"
+                                >
+                                    <div
+                                        class="w-3 h-3 bg-purple-400 rounded-full"
+                                    ></div>
+                                    <div class="flex items-center space-x-2">
+                                        <i
+                                            data-lucide="calendar-days"
+                                            class="w-4 h-4"
+                                        ></i>
+                                        <span class="font-medium"
+                                            >Próximo: Vendimia 2025</span
+                                        >
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center space-x-4 p-4 bg-white/20 backdrop-blur-sm rounded-xl"
+                                >
+                                    <div
+                                        class="w-3 h-3 bg-red-400 rounded-full"
+                                    ></div>
+                                    <div class="flex items-center space-x-2">
+                                        <i
+                                            data-lucide="zap"
+                                            class="w-4 h-4"
+                                        ></i>
+                                        <span class="font-medium"
+                                            >Curicó Unido vs Ñublense</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer
+                class="bg-gradient-to-r from-gray-900 to-gray-800 text-white mt-20"
+            >
+                <div class="container mx-auto px-6 py-12">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 gradient-text">
+                                Diario Mural Curicó
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Conectando a la comunidad curicana con
+                                información local, veraz y oportuna.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-4 flex items-center">
+                                <i
+                                    data-lucide="bookmark"
+                                    class="w-4 h-4 mr-2"
+                                ></i>
+                                Secciones
+                            </h4>
+                            <ul class="space-y-3 text-gray-300">
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="hover:text-white transition-colors flex items-center"
+                                        ><i
+                                            data-lucide="chevron-right"
+                                            class="w-3 h-3 mr-2"
+                                        ></i
+                                        >Noticias</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="hover:text-white transition-colors flex items-center"
+                                        ><i
+                                            data-lucide="chevron-right"
+                                            class="w-3 h-3 mr-2"
+                                        ></i
+                                        >Deportes</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="hover:text-white transition-colors flex items-center"
+                                        ><i
+                                            data-lucide="chevron-right"
+                                            class="w-3 h-3 mr-2"
+                                        ></i
+                                        >Cultura</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-4 flex items-center">
+                                <i data-lucide="mail" class="w-4 h-4 mr-2"></i>
+                                Contacto
+                            </h4>
+                            <div class="space-y-2 text-gray-300">
+                                <p class="flex items-center">
+                                    <i
+                                        data-lucide="map-pin"
+                                        class="w-4 h-4 mr-2"
+                                    ></i>
+                                    Curicó, Región del Maule
+                                </p>
+                                <p class="flex items-center">
+                                    <i
+                                        data-lucide="mail"
+                                        class="w-4 h-4 mr-2"
+                                    ></i>
+                                    contacto@diariomuralcurico.cl
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400"
+                    >
+                        <p class="flex items-center justify-center space-x-2">
+                            <i data-lucide="copyright" class="w-4 h-4"></i>
+                            <span
+                                >2025 Diario Mural Curicó. Todos los derechos
+                                reservados.</span
+                            >
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <script>
+            // Initialize Lucide icons
+            lucide.createIcons();
+
+            // Set current date programmatically
+            function setCurrentDate() {
+                const days = [
+                    "Domingo",
+                    "Lunes",
+                    "Martes",
+                    "Miércoles",
+                    "Jueves",
+                    "Viernes",
+                    "Sábado",
+                ];
+                const months = [
+                    "Enero",
+                    "Febrero",
+                    "Marzo",
+                    "Abril",
+                    "Mayo",
+                    "Junio",
+                    "Julio",
+                    "Agosto",
+                    "Septiembre",
+                    "Octubre",
+                    "Noviembre",
+                    "Diciembre",
+                ];
+
+                const now = new Date();
+                const dayName = days[now.getDay()];
+                const day = now.getDate();
+                const month = months[now.getMonth()];
+                const year = now.getFullYear();
+
+                const formattedDate = `${dayName}, ${day} de ${month} ${year}`;
+                document.getElementById("current-date").textContent =
+                    formattedDate;
+            }
+
+            // Call the function when page loads
+            setCurrentDate();
+
+            const featuredNews = [
+                {
+                    id: 1,
+                    title: "Fiesta de la Vendimia 2025 promete ser la más grande de la historia",
+                    excerpt:
+                        "Con más de 50 actividades programadas, la celebración vitivinícola reunirá a familias de todo el Valle Central.",
+                    image: "https://www.fiestascostumbristas.cl/wp-content/uploads/2025/02/fiesta-de-la-vendimia-curico-2025.webp",
+                    category: "Cultura",
+                    date: "29 Mayo 2025",
+                },
+                {
+                    id: 2,
+                    title: "Plaza de Armas inaugura nuevas luminarias LED",
+                    excerpt:
+                        "El proyecto de modernización resalta las históricas palmeras canarias y el quiosco cívico declarado monumento nacional.",
+                    image: "https://www.diarioelcentro.cl/wp-content/uploads/2022/12/foto-de-la-Plaza-de-Armas-de-Curico-Javier-Munoz-Facebook-768x576.jpg",
+                    category: "Ciudad",
+                    date: "28 Mayo 2025",
+                },
+                {
+                    id: 3,
+                    title: "Curicó Unido se prepara para el clásico regional",
+                    excerpt:
+                        "El equipo entrena intensivamente para enfrentar a su rival histórico este fin de semana.",
+                    image: "https://www.musicaynoticias.cl/wp-content/uploads/2025/04/rangers-curico-resultado-1068x601.webp",
+                    category: "Deportes",
+                    date: "27 Mayo 2025",
+                },
+                {
+                    id: 4,
+                    title: "Nueva temporada turística impulsa el crecimiento hotelero",
+                    excerpt:
+                        "Los establecimientos de la zona registran un aumento del 35% en reservaciones para la temporada de invierno.",
+                    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    category: "Turismo",
+                    date: "26 Mayo 2025",
+                },
+                {
+                    id: 5,
+                    title: "Inauguran moderno laboratorio en Hospital Base de Curicó",
+                    excerpt:
+                        "El nuevo equipamiento permitirá realizar análisis especializados sin derivar pacientes a Santiago.",
+                    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    category: "Salud",
+                    date: "25 Mayo 2025",
+                },
+                {
+                    id: 6,
+                    title: "Feria Gastronómica celebra los sabores del Maule",
+                    excerpt:
+                        "Más de 40 expositores ofrecerán especialidades locales en el evento que se extenderá por todo el fin de semana.",
+                    image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    category: "Gastronomía",
+                    date: "24 Mayo 2025",
+                },
+                {
+                    id: 7,
+                    title: "Estudiantes curicanos destacan en competencia nacional de robótica",
+                    excerpt:
+                        "El equipo del Liceo Técnico logró el segundo lugar en el torneo desarrollado en la capital.",
+                    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    category: "Educación",
+                    date: "23 Mayo 2025",
+                },
+                {
+                    id: 8,
+                    title: "Ampliación de ciclovías conectará todos los sectores de la ciudad",
+                    excerpt:
+                        "El proyecto contempla 15 kilómetros adicionales de vías exclusivas para ciclistas y peatones.",
+                    image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    category: "Transporte",
+                    date: "22 Mayo 2025",
+                },
+                {
+                    id: 9,
+                    title: "Productores locales exportan vinos premium a mercados asiáticos",
+                    excerpt:
+                        "Las viñas de la región aumentaron sus ventas internacionales en un 45% durante el último trimestre.",
+                    image: "https://images.unsplash.com/photo-1547595628-c61a29f496f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    category: "Economía",
+                    date: "21 Mayo 2025",
+                },
+                {
+                    id: 10,
+                    title: "Teatro Municipal presenta temporada de obras nacionales",
+                    excerpt:
+                        "Seis montajes de compañías chilenas se presentarán durante los próximos tres meses.",
+                    image: "https://images.unsplash.com/photo-1507924538820-ede94a04019d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    category: "Cultura",
+                    date: "20 Mayo 2025",
+                },
+            ];
+
+            const latestNews = [
+                {
+                    title: "Nuevo Centro de Salud Familiar abre sus puertas en sector norte",
+                    time: "2 horas",
+                    category: "Salud",
+                    icon: "heart-pulse",
+                },
+                {
+                    title: "Productores locales exhiben en Feria de la Agricultura Sustentable",
+                    time: "4 horas",
+                    category: "Agricultura",
+                    icon: "wheat",
+                },
+                {
+                    title: "Biblioteca Municipal amplía horarios para estudiantes",
+                    time: "6 horas",
+                    category: "Educación",
+                    icon: "book-open",
+                },
+                {
+                    title: "Bomberos adquiere nueva unidad de rescate especializada",
+                    time: "8 horas",
+                    category: "Seguridad",
+                    icon: "shield",
+                },
+                {
+                    title: "Consejo Regional aprueba presupuesto para mejoras viales",
+                    time: "1 día",
+                    category: "Infraestructura",
+                    icon: "road",
+                },
+            ];
+
+            const slideshow = document.getElementById("slideshow");
+            let currentSlide = 0;
+
+            function updateSlide() {
+                const categoryColors = {
+                    Cultura: "bg-purple-600",
+                    Ciudad: "bg-blue-600",
+                    Deportes: "bg-green-600",
+                    Turismo: "bg-cyan-600",
+                    Salud: "bg-red-600",
+                    Gastronomía: "bg-orange-600",
+                    Educación: "bg-indigo-600",
+                    Transporte: "bg-teal-600",
+                    Economía: "bg-emerald-600",
+                };
+
+                slideshow.innerHTML = `
+                <div class="absolute inset-0 hero-gradient opacity-80 z-10"></div>
+                <img src="${featuredNews[currentSlide].image}"
+                     alt="${featuredNews[currentSlide].title}"
+                     class="w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 p-8 md:p-12 z-20 text-white">
+                    <div class="max-w-3xl">
+                        <span class="inline-flex items-center ${categoryColors[featuredNews[currentSlide].category]} px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                            ${featuredNews[currentSlide].category}
+                        </span>
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-shadow">
+                            ${featuredNews[currentSlide].title}
+                        </h2>
+                        <p class="text-lg md:text-xl text-gray-100 mb-6 leading-relaxed">
+                            ${featuredNews[currentSlide].excerpt}
+                        </p>
+                        <div class="flex items-center text-gray-200">
+                            <i data-lucide="calendar" class="w-5 h-5 mr-2"></i>
+                            <span class="font-medium">${featuredNews[currentSlide].date}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute bottom-6 right-6 flex space-x-3 z-20">
+                    ${featuredNews
+                        .map(
+                            (_, i) => `
+                        <button onclick="setSlide(${i})"
+                                class="w-4 h-4 rounded-full transition-all ${i === currentSlide ? "bg-white scale-125" : "bg-white/50 hover:bg-white/80"}">
+                        </button>
+                    `,
+                        )
+                        .join("")}
+                </div>
+            `;
+                lucide.createIcons();
+            }
+
+            function setSlide(index) {
+                currentSlide = index;
+                updateSlide();
+            }
+
+            updateSlide();
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % featuredNews.length;
+                updateSlide();
+            }, 6000);
+
+            const featuredArticles =
+                document.getElementById("featured-articles");
+            featuredNews.slice(1, 7).forEach((article) => {
+                const categoryColors = {
+                    Ciudad: "bg-blue-600",
+                    Deportes: "bg-green-600",
+                };
+
+                const articleDiv = document.createElement("article");
+                articleDiv.className = "group cursor-pointer";
+                articleDiv.innerHTML = `
+                <div class="relative h-64 rounded-2xl overflow-hidden mb-6 shadow-xl card-hover">
+                    <img src="${article.image}"
+                         alt="${article.title}"
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 left-4">
+                        <span class="${categoryColors[article.category]} text-white px-3 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            ${article.category}
+                        </span>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors leading-tight">
+                    ${article.title}
+                </h3>
+                <p class="text-gray-600 mb-4 leading-relaxed">${article.excerpt}</p>
+                <div class="flex items-center justify-between text-sm text-gray-500">
+                    <div class="flex items-center space-x-2">
+                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                        <span>${article.date}</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-blue-600 group-hover:translate-x-2 transition-transform">
+                        <span class="font-medium">Leer más</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            `;
+                featuredArticles.appendChild(articleDiv);
+            });
+
+            const latestNewsSection = document.getElementById("latest-news");
+            latestNews.forEach((news) => {
+                const newsDiv = document.createElement("div");
+                newsDiv.className =
+                    "border-b border-gray-100 pb-4 last:border-b-0 hover:bg-gray-50/50 p-3 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-md";
+                newsDiv.innerHTML = `
+                <h4 class="font-semibold text-gray-900 leading-tight mb-3">${news.title}</h4>
+                <div class="flex items-center justify-between text-sm">
+                    <div class="flex items-center space-x-2 bg-gray-100 px-3 py-1 rounded-full">
+                        <i data-lucide="${news.icon}" class="w-3 h-3 text-gray-600"></i>
+                        <span class="text-gray-700 font-medium">${news.category}</span>
+                    </div>
+                    <div class="flex items-center space-x-1 text-gray-500">
+                        <i data-lucide="clock" class="w-3 h-3"></i>
+                        <span>hace ${news.time}</span>
+                    </div>
+                </div>
+            `;
+                latestNewsSection.appendChild(newsDiv);
+            });
+
+            // Mobile menu toggle
+            const menuToggle = document.getElementById("menu-toggle");
+            const navMenu = document.getElementById("nav-menu");
+
+            menuToggle.addEventListener("click", () => {
+                const isHidden = navMenu.classList.contains("hidden");
+                if (isHidden) {
+                    navMenu.classList.remove("hidden");
+                    menuToggle.innerHTML =
+                        '<i data-lucide="x" class="w-6 h-6"></i>';
+                } else {
+                    navMenu.classList.add("hidden");
+                    menuToggle.innerHTML =
+                        '<i data-lucide="menu" class="w-6 h-6"></i>';
+                }
+                lucide.createIcons();
+            });
+
+            // Re-initialize icons after dynamic content
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
+        </script>
+    </body>
+</html>
