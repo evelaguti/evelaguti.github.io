@@ -10,6 +10,17 @@
 --font-main: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 }
 
+:root[data-theme='dark'] {
+    --primary-color: #90CAF9;   /* Un azul claro y suave, fácil de ver sobre fondo oscuro */
+    --secondary-color: #1A1A1A; /* Un fondo muy oscuro, casi negro puro */
+    --accent-color: #64B5F6;    /* Un azul vibrante pero no cegador */
+    --light-accent: #37474F;    /* Un gris azulado oscuro para acentos sutiles */
+    --light-color: #121212;     /* El fondo principal más oscuro, evita el blanco fuerte */
+    --dark-color: #E0E0E0;      /* Texto principal muy claro para contraste */
+    --success-color: #A5D6A7;   /* Un verde éxito suave */
+    --subtle-color: #263238;    /* Un gris oscuro sutil para bordes o divisiones */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -198,6 +209,10 @@ section {
     background-color: white;
 }
 
+:root[data-theme='dark'] #about {
+    background-color: var(--secondary-color);
+}
+
 .about-content {
     display: flex;
     flex-wrap: wrap;
@@ -253,7 +268,6 @@ transform: scale(1.03);
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('/api/placeholder/1200/800') center/cover;
     opacity: 0.03;
     z-index: 0;
 }
@@ -315,7 +329,7 @@ transition-delay: 0s;
     border: 1px solid rgba(229, 231, 235, 0.5);
      opacity: 0; /* Inicialmente invisible */
 transform: translateY(30px); /* Inicialmente desplazado hacia abajo */
-transition: all 0.2s ease; /* Cambiado de 0.4s a 0.2s */        } 
+transition: all 0.2s ease; /* Cambiado de 0.4s a 0.2s */        }
 
 .skill-category:hover {
     transform: translateY(-8px);
@@ -355,6 +369,10 @@ transition: all 0.2s ease; /* Cambiado de 0.4s a 0.2s */        }
 
 #experience {
     background-color: white;
+}
+
+:root[data-theme='dark'] #experience {
+    background-color: var(--secondary-color);
 }
 
 .timeline {
@@ -410,7 +428,7 @@ transition: all 0.2s ease; /* Cambiado de 0.4s a 0.2s */        }
     border-radius: 50%;
     z-index: 2; /* Círculo por encima de la línea */
     box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.2);
-    transition: transform 0.2s ease; /* Cambiado de 0.3s a 0.2s */        
+    transition: transform 0.2s ease; /* Cambiado de 0.3s a 0.2s */
 }
 
 .timeline-item:hover::after {
@@ -694,4 +712,24 @@ transform: scale(1.1);
 /* Ajustar el marcador "▹" para que no interfiera */
 .skill-list li:before {
 display: none; /* Quitamos el marcador original */
+}
+
+/* Theme Toggle Button Styles */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin-left: 20px; /* Adjust spacing as needed */
+    padding: 5px;
+}
+
+.theme-toggle .fas {
+    font-size: 1.5rem; /* Ensure Font Awesome icon within the toggle button has the correct size */
+}
+
+.theme-toggle:hover {
+    color: var(--accent-color);
 }
