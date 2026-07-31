@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Edgardo Velásquez | Desarrollador Fullstack (versión clásica)</title>
+<style type="text/css">
+* {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    background-color: #F1F5F9;
+    color: #374151;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+}
+a { color: #1E3A8A; }
+a:hover { color: #3B82F6; }
+img { border: 0; }
+.container {
+    width: 700px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.clear { clear: both; font-size: 0; line-height: 0; height: 0; }
+
+/* ---------- header / hero ---------- */
+#header {
+    background-color: #1E3A8A;
+    color: #FFFFFF;
+    padding: 15px 0 0 0;
+}
+#navbar { padding-bottom: 12px; }
+#logo { float: left; }
+#logo img { width: 42px; height: 42px; vertical-align: middle; }
+#navlinks { float: right; padding-top: 10px; }
+#navlinks a {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin-left: 16px;
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+#navlinks a:hover { color: #BFDBFE; }
+
+#hero { text-align: center; padding: 45px 0 40px 0; }
+#hero h1 { font-size: 28px; margin-bottom: 14px; }
+#hero p {
+    font-size: 15px;
+    width: 480px;
+    margin: 0 auto 22px auto;
+    color: #E5E7EB;
+}
+.cta-btn {
+    display: inline-block;
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    padding: 10px 26px;
+    text-decoration: none;
+    font-weight: bold;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+}
+.cta-btn:hover { background-color: #2563EB; color: #FFFFFF; }
+
+/* ---------- retro banner ---------- */
+#retro-note {
+    background-color: #BFDBFE;
+    color: #1F2A44;
+    text-align: center;
+    padding: 6px 10px;
+    font-size: 11px;
+}
+#retro-note a { color: #1E3A8A; }
+
+/* ---------- generic section ---------- */
+.section { padding: 40px 0; }
+.section-title { text-align: center; margin-bottom: 30px; }
+.section-title h2 {
+    font-size: 22px;
+    color: #1F2A44;
+    border-bottom: 3px solid #3B82F6;
+    padding-bottom: 10px;
+}
+
+/* ---------- about ---------- */
+#about { background-color: #FFFFFF; }
+.about-photo {
+    float: left;
+    width: 190px;
+    margin-right: 25px;
+    text-align: center;
+}
+.about-photo img {
+    width: 190px;
+    height: auto;
+    border: 4px solid #E5E7EB;
+}
+.about-text { margin-left: 215px; }
+.about-text h3 { color: #1E3A8A; font-size: 18px; margin-bottom: 12px; }
+.about-text p { margin-bottom: 12px; }
+
+/* ---------- skills ---------- */
+#skills { background-color: #E5E7EB; }
+.skill-box {
+    float: left;
+    width: 213px;
+    margin: 0 10px 20px 0;
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    padding: 16px;
+}
+.skill-box h3 {
+    text-align: center;
+    color: #1E3A8A;
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.skill-box ul { list-style: none; }
+.skill-box li { padding: 3px 0; font-size: 12px; }
+.skill-box li a { color: #374151; text-decoration: none; }
+.skill-box li a:hover { color: #3B82F6; }
+.bullet { color: #3B82F6; font-weight: bold; margin-right: 5px; }
+
+/* ---------- projects ---------- */
+#projects { background-color: #FFFFFF; }
+.project-box {
+    border-left: 4px solid #22C55E;
+    background-color: #F1F5F9;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+}
+.project-box h3 { color: #1E3A8A; margin-bottom: 8px; font-size: 15px; }
+.project-label {
+    display: block;
+    color: #22C55E;
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+.project-box p { margin-bottom: 6px; }
+
+/* ---------- experience ---------- */
+#experience { background-color: #E5E7EB; }
+.job-box {
+    border-left: 4px solid #3B82F6;
+    background-color: #FFFFFF;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+}
+.job-date {
+    display: block;
+    color: #3B82F6;
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 6px;
+}
+.job-box h3 { margin-bottom: 8px; font-size: 15px; }
+.job-box h3 a { color: #1F2A44; text-decoration: none; }
+.job-box h3 a:hover { color: #3B82F6; }
+.job-box p { margin-bottom: 6px; }
+
+/* ---------- contact ---------- */
+#contact { background-color: #1E3A8A; color: #FFFFFF; }
+#contact .section-title h2 { color: #FFFFFF; }
+.contact-form-box {
+    width: 380px;
+    margin: 0 auto 35px auto;
+    background-color: #FFFFFF;
+    padding: 25px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    color: #374151;
+}
+.form-row { margin-bottom: 14px; }
+.form-row label {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #1F2A44;
+}
+.form-row input, .form-row textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #D1D5DB;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+.submit-btn {
+    background-color: #22C55E;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    font-size: 12px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.contact-info { text-align: center; }
+.contact-info p { margin: 8px 0; font-size: 12px; }
+.contact-info a { color: #BFDBFE; }
+.contact-label { font-weight: bold; color: #FFFFFF; }
+
+/* ---------- footer ---------- */
+#footer {
+    background-color: #1F2A44;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 25px 0;
+}
+#footer a {
+    color: #FFFFFF;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+}
+#footer a:hover { color: #BFDBFE; }
+#footer p { font-size: 11px; opacity: 0.85; margin-top: 12px; color: #BFDBFE; }
+</style>
+</head>
+<body>
+
+<div id="retro-note">
+    Versión clásica de este sitio, para navegadores antiguos. La versión actual está en
+    <a href="https://evelaguti.github.io/">evelaguti.github.io</a>
+</div>
+
+<div id="header">
+    <div class="container" id="navbar">
+        <div id="logo"><a href="#top"><img src="https://evelaguti.github.io/images/ev.png" alt="EV" /></a></div>
+        <div id="navlinks">
+            <a href="#about">Sobre Mí</a>
+            <a href="#skills">Habilidades</a>
+            <a href="#projects">Proyectos</a>
+            <a href="#experience">Experiencia</a>
+            <a href="#contact">Contacto</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="container" id="hero">
+        <a name="top"></a>
+        <h1>Edgardo Velásquez Gutiérrez</h1>
+        <p>Desarrollador Full Stack con más de 10 años de experiencia creando soluciones tecnológicas robustas y escalables para empresas</p>
+        <a href="#contact" class="cta-btn">Solicitar mis servicios</a>
+    </div>
+</div>
+
+<div id="about" class="section">
+    <a name="about"></a>
+    <div class="container">
+        <div class="section-title"><h2>Sobre Mí</h2></div>
+        <div class="about-photo">
+            <img src="https://evelaguti.github.io/images/edgardo-velasquez.jpg" alt="Foto de Edgardo Velásquez, Desarrollador Full Stack" />
+        </div>
+        <div class="about-text">
+            <h3>Experto en Desarrollo de Soluciones Tecnológicas Empresariales</h3>
+            <p>Con más de 10 años de experiencia en el ciclo completo de desarrollo de software, me especializo en crear aplicaciones web robustas y escalables utilizando tecnologías modernas tanto en frontend como en backend.</p>
+            <p>Mi formación en Ingeniería en Informática y mi experiencia trabajando en diversos sectores me han permitido desarrollar soluciones completas que resuelven problemas reales de negocio. Me destaco por mi capacidad para transformar requisitos complejos en arquitecturas eficientes y por entregar código limpio y bien estructurado.</p>
+            <p>Actualmente estoy enfocado en proveer servicios de desarrollo empresarial con arquitecturas basadas en microservicios, optimización de rendimiento y experiencias de usuario excepcionales que ayudan a mis clientes a alcanzar sus objetivos de negocio.</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div id="skills" class="section">
+    <a name="skills"></a>
+    <div class="container">
+        <div class="section-title"><h2>Expertise Técnico</h2></div>
+
+        <div class="skill-box">
+            <h3>Backend</h3>
+            <ul>
+                <li><span class="bullet">&raquo;</span><a href="https://www.java.com" target="_blank">Java</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://spring.io" target="_blank">Spring Framework</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://hibernate.org" target="_blank">Hibernate</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://www.redhat.com/en/technologies/jboss-middleware" target="_blank">JBoss</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://maven.apache.org" target="_blank">Maven</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://jakarta.ee/specifications/persistence" target="_blank">JPA</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://go.dev" target="_blank">Go</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://rubyonrails.org" target="_blank">Ruby on Rails</a></li>
+            </ul>
+        </div>
+
+        <div class="skill-box">
+            <h3>Frontend</h3>
+            <ul>
+                <li><span class="bullet">&raquo;</span><a href="https://angular.io" target="_blank">Angular</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://vuejs.org" target="_blank">Vue.js</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://reactjs.org" target="_blank">React</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML5</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">CSS3</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://getbootstrap.com" target="_blank">Bootstrap</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JavaScript</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://primefaces.org" target="_blank">JSF-PrimeFaces</a></li>
+            </ul>
+        </div>
+
+        <div class="skill-box">
+            <h3>Bases de Datos &amp; Servicios</h3>
+            <ul>
+                <li><span class="bullet">&raquo;</span><a href="https://www.postgresql.org" target="_blank">PostgreSQL</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://www.oracle.com/database" target="_blank">Oracle SQL</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://learn.microsoft.com/en-us/sql/t-sql" target="_blank">Transact-SQL</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://restfulapi.net" target="_blank">REST API</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://www.w3.org/TR/soap" target="_blank">SOAP</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://www.w3.org/TR/wsdl" target="_blank">WSDL</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://www.w3.org/XML" target="_blank">XML</a></li>
+                <li><span class="bullet">&raquo;</span><a href="https://microservices.io" target="_blank">Microservicios</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div id="projects" class="section">
+    <a name="projects"></a>
+    <div class="container">
+        <div class="section-title"><h2>Proyectos Personales</h2></div>
+
+        <div class="project-box">
+            <span class="project-label">Proyecto personal</span>
+            <h3>Duelo de Leyendas TCGMYL</h3>
+            <p>Juego de cartas coleccionables basado en <strong>Mitos y Leyendas</strong>, con frontend online y backend API propio.</p>
+            <p><strong>Sitio:</strong> <a href="https://mylie-neon.vercel.app" target="_blank">mylie-neon.vercel.app</a> &middot; <strong>Repo:</strong> <a href="https://github.com/evelaguti/tcgmyl" target="_blank">github.com/evelaguti/tcgmyl</a></p>
+            <p><strong>Tecnologías:</strong> React + Vite + TypeScript + Tailwind CSS + Firebase + Node.js.</p>
+        </div>
+
+        <div class="project-box">
+            <span class="project-label">Proyecto personal</span>
+            <h3>Samair</h3>
+            <p>Aplicación móvil de respiración consciente y bienestar, con ejercicios guiados, audio, ciclos y pantallas de relajación.</p>
+            <p><strong>Sitio:</strong> <a href="https://samair.vercel.app" target="_blank">samair.vercel.app</a> &middot; <strong>Repo:</strong> <a href="https://github.com/evelaguti/samair" target="_blank">github.com/evelaguti/samair</a></p>
+            <p><strong>Tecnologías:</strong> React Native + Expo SDK + TypeScript + NativeWind + Zustand + Expo AV.</p>
+        </div>
+    </div>
+</div>
+
+<div id="experience" class="section">
+    <a name="experience"></a>
+    <div class="container">
+        <div class="section-title"><h2>Experiencia Profesional</h2></div>
+
+        <div class="job-box">
+            <span class="job-date">Agosto 2025 - Presente</span>
+            <h3><a href="https://diariomuralcurico.cl" target="_blank">Diario Mural Curicó</a></h3>
+            <p>Desarrollo de una plataforma para centralizar la agenda de actividades y eventos en la provincia de Curicó.</p>
+            <p>Implementación de un sistema de autenticación y almacenamiento con Firebase.</p>
+            <p>Creación de un panel de administración para la moderación de contenido.</p>
+            <p><strong>Proyecto:</strong> Diario Mural Curicó - Una aplicación web para unificar y centralizar la agenda de eventos de la provincia de Curicó, fomentando la identidad cultural y la participación comunitaria.</p>
+            <p><strong>Tecnologías:</strong> React.js, Tailwind CSS, React-Bootstrap, Firebase.</p>
+        </div>
+
+        <div class="job-box">
+            <span class="job-date">Marzo 2023 - Julio 2025</span>
+            <h3><a href="https://repositorio.ucentral.cl" target="_blank">Infoxicados</a></h3>
+            <p>Despliegue y Desarrollo del Repositorio Digital para la Universidad Central.</p>
+            <p>Integración de DOI y Handle Server en el Repositorio Digital.</p>
+            <p><strong>Proyecto:</strong> Universidad Central de Chile Repository - Desarrollo de un repositorio digital escalable con tecnologías como Java, Spring y PostgreSQL, enfocado en la gestión eficiente de contenido académico.</p>
+        </div>
+
+        <div class="job-box">
+            <span class="job-date">Agosto 2021 - Marzo 2023</span>
+            <h3><a href="https://www.aureolab.com" target="_blank">Aureolab</a></h3>
+            <p>Liderazgo y Desarrollo de proyectos utilizando tecnologías como Go y Ruby on Rails.</p>
+            <p>Integración de Hubster, Webpay y Mailchimp para la plataforma Toliv.</p>
+            <p>Integración de OpenAI para la bolsa de trabajo Winit.</p>
+            <p><strong>Proyecto:</strong> Toliv - Desarrollo de una plataforma integral con Go y Ruby on Rails, integrando múltiples servicios externos para optimizar la experiencia del usuario y la funcionalidad del negocio.</p>
+        </div>
+
+        <div class="job-box">
+            <span class="job-date">Octubre 2017 - Marzo 2018</span>
+            <h3><a href="https://www.exe.cl" target="_blank">Exe</a></h3>
+            <p>Migración de Ungasoft a Exedoc en la Dirección del Trabajo.</p>
+            <p>Desarrollo de Código Único para Exedoc en Fonasa.</p>
+            <p>Mejoras de rendimiento en bandejas de entrada utilizando Hibernate ORM.</p>
+            <p><strong>Tecnologías:</strong> Java 6, PostgreSQL 9.2, Seam 2.2.0, Hibernate 5.0, Maven 3.5.0, JAX-RS 2.0</p>
+        </div>
+
+        <div class="job-box">
+            <span class="job-date">Enero 2017 - Agosto 2017</span>
+            <h3><a href="https://acidlabs.com/" target="_blank">Acid Labs Chile</a></h3>
+            <p>Desarrollo del módulo de beneficiarios para SCD utilizando Spring Boot.</p>
+            <p><strong>Proyecto:</strong> Microservices for SCD - Implementación de un sistema basado en microservicios para la gestión de beneficiarios, optimizando la escalabilidad y el rendimiento con Spring Boot y PostgreSQL.</p>
+            <p><strong>Tecnologías:</strong> Java 8, PostgreSQL 9.2, Spring Boot, Maven, IntelliJ Ultimate.</p>
+        </div>
+
+        <div class="job-box">
+            <span class="job-date">Marzo 2015 - Diciembre 2016</span>
+            <h3><a href="https://www.aclti.com/es/" target="_blank">Aplicaciones Computacionales SPA</a></h3>
+            <p>Desarrollo de una plataforma bancaria para gestionar flujos de trabajo de créditos hipotecarios.</p>
+            <p><strong>Tecnologías:</strong> Java 1.7, Oracle SQL 11g, Spring Framework, JSF-PrimeFaces, WebLogic, Maven, Git.</p>
+        </div>
+
+        <div class="job-box">
+            <span class="job-date">Julio 2014 - Enero 2015</span>
+            <h3><a href="https://www.sernapesca.cl/" target="_blank">Siseek</a></h3>
+            <p>Desarrollo de un sistema de trazabilidad para productos y especies (Sernapesca).</p>
+            <p><strong>Tecnologías:</strong> HTML, JavaScript, Transact-SQL, Java, XML, JPA, Struts, Spring.</p>
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="section">
+    <a name="contact"></a>
+    <div class="container">
+        <div class="section-title"><h2>Solicita una Consulta</h2></div>
+
+        <div class="contact-form-box">
+            <form action="https://formspree.io/f/xqapwlgd" method="POST">
+                <div class="form-row">
+                    <label for="f-name">Nombre completo</label>
+                    <input type="text" id="f-name" name="name" />
+                </div>
+                <div class="form-row">
+                    <label for="f-email">Correo electrónico</label>
+                    <input type="text" id="f-email" name="email" />
+                </div>
+                <div class="form-row">
+                    <label for="f-type">Tipo de proyecto</label>
+                    <input type="text" id="f-type" name="proyect_type" />
+                </div>
+                <div class="form-row">
+                    <label for="f-msg">Describa brevemente su proyecto o necesidad tecnológica</label>
+                    <textarea id="f-msg" name="message" rows="5"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Solicitar información</button>
+            </form>
+        </div>
+
+        <div class="contact-info">
+            <p><span class="contact-label">Dirección:</span> <a href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Alemania+4510,+Valpara%C3%ADso,+Chile" target="_blank">Avenida Alemania 4510, Valparaíso, Chile</a></p>
+            <p><span class="contact-label">Email:</span> <a href="mailto:edg.velasquez.g@gmail.com">edg.velasquez.g@gmail.com</a></p>
+            <p><span class="contact-label">WhatsApp:</span> <a href="https://wa.me/+56937121313?text=Hola,%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20un%20proyecto%20tecnol%C3%B3gico" target="_blank">Contáctanos por WhatsApp</a></p>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <div class="container">
+        <a href="https://linkedin.com/in/edgvelasquez/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/evelaguti" target="_blank">GitHub</a>
+        <p>&copy; 2026 Edgardo Velásquez. Todos los derechos reservados.</p>
+    </div>
+</div>
+
+</body>
+</html>
