@@ -1,0 +1,100 @@
+<svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definiciones de gradientes y patrones -->
+  <defs>
+    <!-- Gradiente de fondo principal -->
+    <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#192844" />
+      <stop offset="100%" stop-color="#0a1020" />
+    </linearGradient>
+    
+    <!-- Patrón de circuito -->
+    <pattern id="circuitPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M10,10 L50,10 L50,50 L90,50 L90,10 L130,10 L130,90 L170,90 L170,170 L130,170 L130,130 L90,130 L90,90 L10,90 Z" 
+            fill="none" stroke="rgba(74, 144, 226, 0.1)" stroke-width="2" />
+      <path d="M30,30 L30,70 L70,70 L70,110 L110,110 L110,150 L150,150" 
+            fill="none" stroke="rgba(74, 144, 226, 0.1)" stroke-width="2" />
+    </pattern>
+    
+    <!-- Filtro de brillo para elementos -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Fondo principal -->
+  <rect width="100%" height="100%" fill="url(#techGradient)" />
+  
+  <!-- Capa de patrón de circuito -->
+  <rect width="100%" height="100%" fill="url(#circuitPattern)" />
+  
+  <!-- Hexágonos interconectados representando datos/redes -->
+  <g stroke="rgba(74, 144, 226, 0.3)" stroke-width="1.5" fill="none">
+    <!-- Grupo de hexágonos izquierda -->
+    <polygon points="100,200 125,170 150,200 125,230 100,200" />
+    <polygon points="150,200 175,170 200,200 175,230 150,200" />
+    <polygon points="125,140 150,110 175,140 150,170 125,140" />
+    
+    <!-- Grupo de hexágonos derecha -->
+    <polygon points="1000,200 1025,170 1050,200 1025,230 1000,200" />
+    <polygon points="1050,200 1075,170 1100,200 1075,230 1050,200" />
+    <polygon points="1025,140 1050,110 1075,140 1050,170 1025,140" />
+    
+    <!-- Líneas de conexión -->
+    <line x1="150" y1="170" x2="150" y2="200" />
+    <line x1="175" y1="140" x2="175" y2="170" />
+    <line x1="1050" y1="170" x2="1050" y2="200" />
+    <line x1="1075" y1="140" x2="1075" y2="170" />
+  </g>
+  
+  <!-- Líneas y nodos centrales -->
+  <g>
+    <!-- Líneas horizontales con "pulso" de datos -->
+    <line x1="200" y1="200" x2="1000" y2="200" stroke="rgba(74, 144, 226, 0.4)" stroke-width="2" />
+    <line x1="250" y1="150" x2="950" y2="150" stroke="rgba(74, 144, 226, 0.2)" stroke-width="1" />
+    <line x1="300" y1="250" x2="900" y2="250" stroke="rgba(74, 144, 226, 0.2)" stroke-width="1" />
+    
+    <!-- Nodos de conexión -->
+    <circle cx="400" cy="200" r="5" fill="#4a90e2" opacity="0.7" filter="url(#glow)" />
+    <circle cx="600" cy="200" r="5" fill="#4a90e2" opacity="0.7" filter="url(#glow)" />
+    <circle cx="800" cy="200" r="5" fill="#4a90e2" opacity="0.7" filter="url(#glow)" />
+    
+    <!-- Pulsos de datos animados -->
+    <circle r="4" fill="#4a90e2">
+      <animate attributeName="cx" values="200;1000;200" dur="8s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="200;200;200" dur="8s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0;1;0" dur="8s" repeatCount="indefinite" />
+    </circle>
+    
+    <circle r="3" fill="#4a90e2">
+      <animate attributeName="cx" values="1000;200;1000" dur="10s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="200;200;200" dur="10s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0;1;0" dur="10s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <!-- Código binario flotante -->
+  <g font-family="monospace" font-size="12" fill="rgba(255,255,255,0.1)">
+    <text x="250" y="300">010011100110</text>
+    <text x="750" y="100">110010100111</text>
+    <text x="400" y="350">001010110010</text>
+    <text x="850" y="280">111001010010</text>
+  </g>
+  
+  <!-- Efecto de partículas -->
+  <g fill="#fff">
+    <circle cx="300" cy="120" r="1" opacity="0.3" />
+    <circle cx="820" cy="220" r="1" opacity="0.3" />
+    <circle cx="500" cy="300" r="1" opacity="0.3" />
+    <circle cx="700" cy="150" r="1" opacity="0.3" />
+    <circle cx="900" cy="350" r="1" opacity="0.3" />
+    <circle cx="250" cy="250" r="1" opacity="0.3" />
+    <circle cx="650" cy="320" r="1" opacity="0.3" />
+    <circle cx="450" cy="100" r="1" opacity="0.3" />
+    <circle cx="850" cy="180" r="1" opacity="0.3" />
+    <circle cx="380" cy="280" r="1" opacity="0.3" />
+  </g>
+  
+  <!-- Área central para texto -->
+  <ellipse cx="600" cy="200" rx="500" ry="120" fill="url(#techGradient)" opacity="0.7" />
+</svg>
